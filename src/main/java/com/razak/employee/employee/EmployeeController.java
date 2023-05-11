@@ -8,9 +8,9 @@ import java.util.List;
 public class EmployeeController
 {
     private EmployeeService service;
-    public EmployeeController(EmployeeService service)
+    public EmployeeController(EmployeeService serviceIn)
     {
-        this.service = service;
+        this.service = serviceIn;
     }
     @PostMapping
     public Employee save(@RequestBody Employee employee)
@@ -18,22 +18,24 @@ public class EmployeeController
         return service.save(employee);
     }
     @GetMapping
-    public List<Employee> findAllEmployees() {
+    public List<Employee> findAllEmployees()
+    {
         return service.findAllEmployees();
     }
-    @GetMapping("/{email}")
-    public Employee findByEmail(int id) {
+    @GetMapping("/{id}")
+    public Employee findById(@PathVariable("id") int id)
+    {
         return service.findById(id);
     }
     @PutMapping
-    public Employee update(Employee employee)
+    public Employee update(@RequestBody Employee employee)
 
     {
         return service.update(employee);
     }
-    @DeleteMapping
-    public void delete(int Id)
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable("id") int id)
     {
-        service.delete(Id);
+        service.delete(id);
     }
 }
