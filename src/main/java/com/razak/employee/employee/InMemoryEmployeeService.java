@@ -7,9 +7,16 @@ import java.util.List;
 @Service
 public class InMemoryEmployeeService implements EmployeeService
 {
-    private InMemoryEmployeeDao dao;
+    private final InMemoryEmployeeDao dao;
+
+    public InMemoryEmployeeService(InMemoryEmployeeDao daoIn)
+    {
+        this.dao = daoIn;
+    }
+
     @Override
-    public Employee save(Employee employee) {
+    public Employee save(Employee employee)
+    {
         return dao.save(employee);
     }
 

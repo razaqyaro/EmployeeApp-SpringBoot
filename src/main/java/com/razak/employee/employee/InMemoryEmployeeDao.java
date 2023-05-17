@@ -28,11 +28,11 @@ public class InMemoryEmployeeDao
                 .orElse(null);
     }
     public Employee update(Employee employee) {
-        int employeeIndex = IntStream.range(0, EMPLOYEES.size())
+        var employeeIndex = IntStream.range(0, EMPLOYEES.size())
                 .filter(index -> EMPLOYEES.get(index).getId() == employee.getId())
                 .findFirst()
                 .orElse(-1);//findIndexById(employee.getId());
-        if (employeeIndex != -1) {
+        if (employeeIndex > -1) {
             EMPLOYEES.set(employeeIndex, employee);
             return employee;
         }

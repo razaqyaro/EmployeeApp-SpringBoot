@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RestController
-@RequestMapping("api/v1/employees")
+@RequestMapping("/api/v1/employees")
 public class EmployeeController
 {
     private EmployeeService service;
@@ -17,15 +17,15 @@ public class EmployeeController
     {
         return service.save(employee);
     }
-    @GetMapping
-    public List<Employee> findAllEmployees()
-    {
-        return service.findAllEmployees();
-    }
     @GetMapping("/{id}")
     public Employee findById(@PathVariable("id") int id)
     {
         return service.findById(id);
+    }
+    @GetMapping
+    public List<Employee> findAllEmployees()
+    {
+        return service.findAllEmployees();
     }
     @PutMapping
     public Employee update(@RequestBody Employee employee)
